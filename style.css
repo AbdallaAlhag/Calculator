@@ -40,6 +40,48 @@ body {
     margin: 0 auto;
     width: 400px;
     height: 600px;
-    background-color: grey;
+    background-color: black;
+    border: silver;
+}
 
+#button-grid{
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    height: 300px;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+    background-color: #696969;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    width: 90px;
+    height: 80px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn:active {
+    background-color: #3e8e41;
+}
+
+.btn.button-lightGrey {
+    background-color: #BEBEBE	;
+}
+
+.btn.button-yellow{
+    background-color: #FF9900;
+}
+
+#zero {
+    width: 190px;
+    border-radius: 30px;
 }
