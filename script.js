@@ -1,30 +1,81 @@
 let variable1 = 0;
 let variable2 = 0;
-let operator = 0;
+let operation = "";
 
+// dont know how to use objects with bottons
 
+let user1 = {
+    name: 'john',
+    age: 30
+};
+
+let currentScreen = document.querySelector('.screen-current');
+let prevScreen = document.querySelector('.screen-previous');
 const buttons = document.querySelectorAll('button');
-const currentScreen = document.querySelector('.screen-current');
-const prevScreen = document.querySelector('.screen-previous');
 const clear = document.getElementById('clear');
+const result = document.getElementById('equal');
+
+
+// MAYBE USELESS???
+// const addBtn = document.getElementById('addition');
+// const subBtn = document.getElementById('subtraction');
+// const multBtn = document.getElementById('multiplication');
+// const divBtn = document.getElementById('division'); 
+
+
+// First sequence
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         // alert(button.id);
         // if(button.first)
-        if(button.firstElementChild.className !== 'number') {
-            return;
+        if(button.firstElementChild.className === 'number') {
+            // return;
+            currentScreen.textContent += parseInt(button.textContent);
+            variable1 = parseInt(currentScreen.textContent);
         }
         // Doesn't wrap yet
-        currentScreen.textContent += parseInt(button.textContent); 
+        
         // This is coming out wrong
-        variable1 += button.textContent; 
-        console.log(variable1);
+        // variable1 += button.textContent; 
+        // console.log(variable1);
     })
 })
 
 
+// buttons.forEach(button => console.log(button));
 
+// 2nd Sequence
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if(button.firstElementChild.className === 'op') {
+            prevScreen.textContent = currentScreen.textContent + " " + button.textContent;
+            variable2 = parseInt(prevScreen.textContent);
+            operation = button.id;
+            console.log(operation);
+            currentScreen.textContent = ' ';
+        }
+    })
+})
+
+
+// Third sequence 
+result.addEventListener('click', () =>{
+    prevScreen.textContent += variable1 + ' ' + "=";
+    console.log(prevScreen.textContent);
+    currentScreen.textContent = operatorFunc(operation,variable2, variable1);
+    console.log(currentScreen.textContent);
+})
+
+
+function test(){
+    variable1 = parseInt(currentScreen.textContent);
+    console.log(variable1);
+};
+
+function answer() {
+    console.log(variable1 + variable2);
+}
 
 clear.addEventListener('click', () => {
     currentScreen.textContent = ' ';
@@ -33,15 +84,15 @@ clear.addEventListener('click', () => {
 
 
 const add = function(a,b) {
-    return a + b;
+    return (a + b);
 }
 
 const subtract = function(a,b) {
-    return a - b;
+    return (a - b);
 }
 
 const multiply = function(a,b) {
-    return a * b;
+    return (a * b);
 }
 
 const divide = function(a,b) {
@@ -49,7 +100,7 @@ const divide = function(a,b) {
         return "Can't divide by zero";
     }
     else {
-        return a / b;
+        return (a / b);
     }
 }
 
@@ -57,23 +108,25 @@ const divide = function(a,b) {
 
 function operatorFunc(op, a, b) {
     switch(op) {
-        case "1":
-            console.log(add(a,b));
+        case "addition":
+            return add(a,b);
             break;
-        case "2":
-            console.log(subtract(a,b));
+        case "subtraction":
+            return subtract(a,b);
             break;
-        case "3":
-            console.log(multiply(a,b));
+        case "multiplication":
+            return multiply(a,b);
             break;
-        case "4":
-            console.log(divide(a,b));
+        case "division":
+            return divide(a,b);
             break;
         default:
-            console.log("Unknown");
+            ("Unknown");
     }
 }
 
-operatorFunc(operator, variable1, variable2);
+
+
+console.log("hello: " + operatorFunc("subtraction", 10, 6));
 
 
