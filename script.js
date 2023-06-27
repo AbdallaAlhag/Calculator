@@ -2,6 +2,36 @@ let variable1 = 0;
 let variable2 = 0;
 let operator = 0;
 
+
+const buttons = document.querySelectorAll('button');
+const currentScreen = document.querySelector('.screen-current');
+const prevScreen = document.querySelector('.screen-previous');
+const clear = document.getElementById('clear');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        // alert(button.id);
+        // if(button.first)
+        if(button.firstElementChild.className !== 'number') {
+            return;
+        }
+        // Doesn't wrap yet
+        currentScreen.textContent += parseInt(button.textContent); 
+        // This is coming out wrong
+        variable1 += button.textContent; 
+        console.log(variable1);
+    })
+})
+
+
+
+
+clear.addEventListener('click', () => {
+    currentScreen.textContent = ' ';
+    prevScreen.textContent = ' ';
+})
+
+
 const add = function(a,b) {
     return a + b;
 }
@@ -23,12 +53,7 @@ const divide = function(a,b) {
     }
 }
 
-console.log(divide(9,0));
 
-
-// variable1 = prompt("Enter number 1 : ");
-// variable2 = prompt("Enter number 2 : ");
-// operator = prompt("Enter a number 1-4 : ") ;
 
 function operatorFunc(op, a, b) {
     switch(op) {
